@@ -10,7 +10,13 @@ variable "do_token" {
   description = "DigitalOcean API token"
   type        = string
 }
-variable "digitalocean" {
+
+variable "pvt_key" {
+  description = "Private key path"
+  type        = string
+}
+
+provider "digitalocean" {
   token = var.do_token
 }
 
