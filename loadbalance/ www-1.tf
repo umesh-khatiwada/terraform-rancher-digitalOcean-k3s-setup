@@ -1,8 +1,8 @@
 resource "digitalocean_droplet" "www-1" {
     image = "ubuntu-20-04-x64"
-    name = "www-1"
-    region = "nyc3"
-    size = "s-1vcpu-1gb"
+    name = "www-worker"
+    region = "blr1"
+    size = "s-2vcpu-4gb"
     ssh_keys = [
       data.digitalocean_ssh_key.terraform.id
     ]
@@ -25,7 +25,7 @@ resource "digitalocean_droplet" "www-1" {
       "sudo systemctl enable nginx",
       "sudo systemctl start nginx",
       # Install K3s agent and join the cluster
-      "curl -sfL https://get.k3s.io | K3S_URL=https://134.209.153.28:6443 K3S_TOKEN=K10e2aa12d2fae01a7aa63fbe621561a1e22f5727a467e6d7539e0c9ee988f129ca::server:0f716ba2f9f3e1e063034d28e0615698 sh -",
+      "curl -sfL https://get.k3s.io | K3S_URL=https://134.209.153.28:6443 K3S_TOKEN=K10df56510d8b43e7ec1cee60c0e790924f52ad464b6105ffe30105c7cb9dc83f8a::server:6811b85b1f0bb493e26024d7b5b40e63 sh -",
       # Wait for K3s agent to be ready
       "sleep 10",
       # Verify K3s agent is running
